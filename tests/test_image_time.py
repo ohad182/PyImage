@@ -11,7 +11,7 @@ def test_image_time():
 
 def test_get_time_folder():
     import os
-    from features.compare.time import get_dated_path
+    from core.file_manager import rename_file
     from os import walk
     print()
     folder_path = ""
@@ -22,7 +22,7 @@ def test_get_time_folder():
     counter = 1
     for fi in f:
         print(f"{counter} ", end="")
-        date = get_dated_path(fi, dry=False)
+        date = rename_file(fi, dry=False)
         counter = counter + 1
 
         assert date is None if fi.endswith(".mp4") else not None

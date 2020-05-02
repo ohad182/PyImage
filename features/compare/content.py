@@ -2,9 +2,17 @@ import cv2
 import numpy as np
 
 
+def _load_image(image_path: str):
+    image_buffer = np.fromfile(image_path)
+
+    return cv2.imdecode(image_buffer, -1)
+
+
 def is_same_content(img1_path, img2_path, compare_mode=1) -> bool:
-    image1 = cv2.imread(img1_path)
-    image2 = cv2.imread(img2_path)
+    image1 = _load_image(img1_path)
+    image2 = _load_image(img2_path)
+    # image1 = cv2.imread(img1_path)
+    # image2 = cv2.imread(img2_path)
     # Option 1
     if compare_mode == 1:
         return compare1(image1, image2)
